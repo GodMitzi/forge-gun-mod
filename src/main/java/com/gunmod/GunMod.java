@@ -20,14 +20,15 @@ public class GunMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("Gun Mod setup complete!");
+        LOGGER.info("Gun Mod setup complete! The mod is loaded and working!");
+        LOGGER.info("You can now use the gun mod commands and features!");
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID)
     public static class ServerEvents {
         @SubscribeEvent
         public static void onServerStarting(ServerStartingEvent event) {
-            LOGGER.info("Gun Mod server starting!");
+            LOGGER.info("Gun Mod server starting! Mod is fully functional!");
         }
     }
 }

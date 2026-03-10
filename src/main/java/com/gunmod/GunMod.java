@@ -1,11 +1,10 @@
 package com.gunmod;
 
+import com.gunmod.init.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
 @Mod(GunMod.MOD_ID)
@@ -16,19 +15,13 @@ public class GunMod {
     public GunMod(FMLJavaModLoadingContext context) {
         var modEventBus = context.getModBusGroup();
 
+        ModItems.register(modEventBus);
         FMLCommonSetupEvent.getBus(modEventBus).addListener(this::commonSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("Gun Mod setup complete! The mod is loaded and working!");
-        LOGGER.info("You can now use the gun mod commands and features!");
-    }
-
-    @Mod.EventBusSubscriber(modid = MOD_ID)
-    public static class ServerEvents {
-        @SubscribeEvent
-        public static void onServerStarting(ServerStartingEvent event) {
-            LOGGER.info("Gun Mod server starting! Mod is fully functional!");
-        }
+        LOGGER.info("Gun Mod setup complete! 10 guns and 3 ammo types loaded!");
+        LOGGER.info("Guns: Pistol, Rifle, Shotgun, SMG, Sniper, Launcher, Revolver, Machine Gun, Silenced Pistol, Assault Rifle");
+        LOGGER.info("Ammo: Light, Medium, Heavy");
     }
 }

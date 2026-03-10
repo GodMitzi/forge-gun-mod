@@ -6,7 +6,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'eclipse'
-    id 'net.minecraftforge.gradle' version '[7.0.3,8)'
+    id 'net.minecraftforge.gradle' version '7.0.14'
 }
 
 version = '1.0.0'
@@ -18,7 +18,10 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 // Include generated resources
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+println "[build.gradle] configurations: ${configurations.names}"
+
 minecraft {
+    version = '1.21.11'
     mappings channel: 'official', version: '1.21.11'
 
     runs {
@@ -26,7 +29,7 @@ minecraft {
             workingDir = layout.projectDirectory.dir('run')
 
             systemProperty 'eventbus.api.strictRuntimeChecks', 'true'
-            systemProperty 'forge.enabledGameTestNamespaces', 'gunmod'
+            systemProperty 'forge.enabledGameTestNamespaces', 'examplemod'
         }
 
         register('client')
@@ -49,12 +52,15 @@ repositories {
     minecraft.mavenizer(it) // In Kotlin, it = this
     maven fg.forgeMaven
     maven fg.minecraftLibsMaven
+    maven { url = uri('https://maven.terraformersmc.com/releases/') }
     mavenCentral()
 }
 
-dependencies {
-    implementation minecraft.dependency('net.minecraftforge:forge:1.21.11-61.1.3')
-    annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.1'
+task listConfigs {
+    doLast {
+        println("Configurations:")
+        configurations.each { println it.name }
+    }
 }
 
 tasks.withType(JavaCompile).configureEach {

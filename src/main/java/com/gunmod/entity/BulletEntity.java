@@ -1,13 +1,13 @@
 package com.gunmod.entity;
 
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.network.NetworkHooks;
 
 /**
@@ -16,17 +16,18 @@ import net.minecraftforge.network.NetworkHooks;
 public class BulletEntity extends AbstractArrow {
     public BulletEntity(EntityType<? extends BulletEntity> type, Level world) {
         super(type, world);
-        this.pickup = Pickup.DISALLOWED;
+        this.pickup = AbstractArrow.Pickup.DISALLOWED;
     }
 
     public BulletEntity(EntityType<? extends BulletEntity> type, Level world, LivingEntity shooter) {
         super(type, shooter, 0, 0);
         this.setOwner(shooter);
-        this.pickup = Pickup.DISALLOWED;
+        this.pickup = AbstractArrow.Pickup.DISALLOWED;
     }
 
-    public BulletEntity(PlayMessages.SpawnEntity packet, Level world) {
+    public BulletEntity(Level world) {
         super(ModEntities.BULLET.get(), world);
+        this.pickup = AbstractArrow.Pickup.DISALLOWED;
     }
 
     @Override
@@ -49,7 +50,7 @@ public class BulletEntity extends AbstractArrow {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

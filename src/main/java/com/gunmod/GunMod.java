@@ -14,10 +14,10 @@ public class GunMod {
     public static final String MOD_ID = "gunmod";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public GunMod() {
-        var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public GunMod(FMLJavaModLoadingContext context) {
+        var modEventBus = context.getModBusGroup();
 
-        modEventBus.addListener(this::commonSetup);
+        FMLCommonSetupEvent.getBus(modEventBus).addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
 

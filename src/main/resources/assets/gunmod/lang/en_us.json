@@ -1,0 +1,16 @@
+{
+  "itemGroup.gunmod.gun_tab": "Gun Mod",
+  "item.gunmod.pistol": "Pistol",
+  "item.gunmod.rifle": "Rifle",
+  "item.gunmod.shotgun": "Shotgun",
+  "item.gunmod.smg": "SMG",
+  "item.gunmod.sniper": "Sniper",
+  "item.gunmod.launcher": "Launcher",
+  "item.gunmod.revolver": "Revolver",
+  "item.gunmod.machine_gun": "Machine Gun",
+  "item.gunmod.pistol_silenced": "Silenced Pistol",
+  "item.gunmod.rifle_assault": "Assault Rifle",
+  "item.gunmod.light_ammo": "Light Ammo",
+  "item.gunmod.medium_ammo": "Medium Ammo",
+  "item.gunmod.heavy_ammo": "Heavy Ammo"
+}

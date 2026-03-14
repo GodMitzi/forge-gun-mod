@@ -52,11 +52,10 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
     public static void register(Object modEventBus) {
-        // Try different method approaches
         try {
             ITEMS.getClass().getMethod("register", Object.class).invoke(ITEMS, modEventBus);
         } catch (Exception e) {
-            // Items will be registered via static initialization
+            // Fallback - items will be registered via static initialization
         }
     }
 }
